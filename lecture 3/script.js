@@ -1,4 +1,7 @@
 class Shape {
+	constructor(container, width = '1000px', height = '300px') {
+		this.initCanvas(container, width, height);
+	}
 	initCanvas = (container, width, height) => {
 		this.c = document.createElement('canvas');
 		this.root = document.querySelector(container) || document.body;
@@ -11,11 +14,10 @@ class Shape {
 
 class Square extends Shape {
 	constructor(container, width = '1000px', height = '300px') {
-		super();
-		this.initCanvas(container, width, height);
+		super(container, width, height);
 	}
 
-	draw(x, y, w, h, color = '#a6242b') {
+	draw = (x, y, w, h, color = '#a6242b') => {
 		this.ctx.fillStyle = color;
 		this.ctx.rect(x, y, w, h);
 		this.ctx.fill();
@@ -24,25 +26,23 @@ class Square extends Shape {
 
 class Circle extends Shape {
 	constructor(container, width = '1000px', height = '300px') {
-		super();
-		this.initCanvas(container, width, height);
+		super(container, width, height);
 	}
 
-	draw(x, y, r, color = '#a6242b') {
+	draw = (x, y, r, color = '#a6242b') => {
 		this.ctx.beginPath();
 		this.ctx.fillStyle = color;
-		this.ctx.arc(y, x, r, 0, 2 * 	Math.PI);
+		this.ctx.arc(y, x, r, 0, 2 * Math.PI);
 		this.ctx.fill();
 	}
 }
 
 class Triangle extends Shape {
 	constructor(container, width = '1000px', height = '300px') {
-		super();
-		this.initCanvas(container, width, height);
+		super(container, width, height);
 	}
 
-	draw(x1, y1, x2, y2, x3, y3, color = '#a6242b') {
+	draw = (x1, y1, x2, y2, x3, y3, color = '#a6242b') => {
 		this.ctx.beginPath();
 		this.ctx.fillStyle = color;
 		this.ctx.moveTo(x1, y1);
