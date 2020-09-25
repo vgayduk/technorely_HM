@@ -5,21 +5,28 @@ function myFetch(url, options = {}) {
   return new Promise((resolve, reject) => {
     let xhr = new XMLHttpRequest();
     xhr.open(options.method || "GET", url);
+    xhr.responseType = options.responseType || "";
     xhr.send([options.body]);
 
     xhr.onload = () => {
-      if (xhr.status != 200) {
-        reject();
-      } else {
-        xhr.blob = function () {
-          return new Promise((resolve, reject) => {
-            let blob = new Blob([xhr.response], { type: "image/jpg" });
-            resolve(blob);
-          });
-        };
+      if (xhr.status != 200) reject();
+      xhr.blob = () => {
+        return new Promise((resolve, reject) => {
+          let blob = new Blob([xhr.response], {});
+          if (blob) resolve(blob);
+          reject();
+        });
+      };
 
-        resolve(xhr);
-      }
+      xhr.json = () => {
+        return new Promise((resolve, reject) => {
+          let jsonString = JSON.parse(xhr.response);
+          if (jsonString) resolve(jsonString);
+          reject();
+        });
+      };
+
+      resolve(xhr);
     };
 
     xhr.onerror = () => {
@@ -28,7 +35,7 @@ function myFetch(url, options = {}) {
   });
 }
 
-myFetch(IMAGE_API_URL)
+myFetch(IMAGE_API_URL, { responseType: "blob" })
   .then((response) => response.blob())
   .then((blob) => {
     let reader = new FileReader();
