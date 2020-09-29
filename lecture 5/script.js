@@ -22,7 +22,7 @@ function myFetch(url, options = {}) {
         return new Promise((resolve, reject) => {
           let jsonString = JSON.parse(xhr.response);
           if (jsonString) resolve(jsonString);
-          reject();
+          reject(); 
         });
       };
 
