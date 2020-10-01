@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "format": "prettier --write \"*{.html,.css,.js}\"",
+    "format": "prettier --write \"*{.html,.css,.js}\" .",
     "lint:js": "eslint --fix --ext .js .",
     "lint:css": "stylelint \"**/*.css\"",
     "build": "webpack"
@@ -15,8 +15,7 @@
     "autoprefixer": "^10.0.1",
     "css-loader": "^4.3.0",
     "eslint": "^7.9.0",
-    "postcss-class-name-shortener": "^1.1.0",
-    "postcss-loader": "^4.0.2",
+    "html-webpack-plugin": "^4.5.0",
     "prettier": "^2.1.2",
     "style-loader": "^1.2.1",
     "stylelint": "^13.7.2",

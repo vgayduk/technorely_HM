@@ -49,7 +49,7 @@ h1 {
   top: 0;
   right: 0;
   height: 30px;
-  width: 50px;
+  width: 70px;
   background: #ddd;
   border: none;
   border-bottom-right-radius: 20px;
@@ -59,10 +59,11 @@ h1 {
   color: #555;
   cursor: pointer;
   transition: all 0.2s;
+  outline: none;
 }
 
 #search-btn:hover {
-  font-size: 20px;
+  font-size: 18px;
 }
 
 #content-container {

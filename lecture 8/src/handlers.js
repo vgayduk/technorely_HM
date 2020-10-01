@@ -1,7 +1,8 @@
-import { container, input, server } from './script.js'
+import { input } from './script.js'
 import { createErrorMessage } from './functions.js'
 
-export function findContent() {
+export function findContent(e, server, container) {
+  e.preventDefault()
   const request = fetch(server + input.value.trim())
 
   while (container.firstChild) {
@@ -9,12 +10,10 @@ export function findContent() {
   }
 
   request
-    // eslint-disable-next-line no-undef
     .then(response => (response.ok ? response.json() : Promise.reject()))
     .then(response => {
-      console.log(response)
       if (!response.length) {
-        createErrorMessage()
+        createErrorMessage(container)
         return
       }
       for (let i = 0; i < response.length; i++) {
@@ -34,7 +33,6 @@ export function findContent() {
         info.appendChild(ul)
 
         for (let key in response[i].show) {
-          var li = document.createElement('li')
           switch (key) {
             case 'image':
               if (response[i].show[key]) {
@@ -46,6 +44,7 @@ export function findContent() {
 
             case 'name':
               if (response[i].show[key]) {
+                var li = document.createElement('li')
                 ul.appendChild(li)
                 li.innerHTML = `<span>Name:</span> ${response[i].show[key]}`
               }
@@ -53,6 +52,7 @@ export function findContent() {
 
             case 'genres':
               if (response[i].show[key]) {
+                var li = document.createElement('li')
                 ul.appendChild(li)
                 li.innerHTML = `<span>Genres:</span> ${response[i].show[
                   key
@@ -62,6 +62,7 @@ export function findContent() {
 
             case 'language':
               if (response[i].show[key]) {
+                var li = document.createElement('li')
                 ul.appendChild(li)
                 li.innerHTML = `<span>Language:</span> ${response[i].show[key]}`
               }
@@ -69,6 +70,7 @@ export function findContent() {
 
             case 'premiered':
               if (response[i].show[key]) {
+                var li = document.createElement('li')
                 ul.appendChild(li)
                 li.innerHTML = `<span>Premiered:</span> ${response[i].show[key]}`
               }
@@ -76,6 +78,7 @@ export function findContent() {
 
             case 'rating':
               if (response[i].show[key] && response[i].show[key].average) {
+                var li = document.createElement('li')
                 ul.appendChild(li)
                 li.innerHTML = `<span>Rate:</span> ${response[i].show[key].average}`
               }
@@ -83,6 +86,7 @@ export function findContent() {
 
             case 'status':
               if (response[i].show[key]) {
+                var li = document.createElement('li')
                 ul.appendChild(li)
                 li.innerHTML = `<span>Status:</span> ${response[i].show[key]}`
               }
@@ -90,6 +94,7 @@ export function findContent() {
 
             case 'url':
               if (response[i].show[key]) {
+                var li = document.createElement('li')
                 const link = document.createElement('a')
                 link.setAttribute('href', response[i].show[key])
                 link.setAttribute('target', 'blank')
@@ -102,5 +107,5 @@ export function findContent() {
         }
       }
     })
-    .catch(createErrorMessage)
+    .catch(() => createErrorMessage(container))
 }

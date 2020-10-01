@@ -1,6 +1,4 @@
-import { container } from './script.js'
-
-export function createErrorMessage() {
+export function createErrorMessage(container) {
   let errDiv = document.createElement('div')
 
   container.appendChild(errDiv)
