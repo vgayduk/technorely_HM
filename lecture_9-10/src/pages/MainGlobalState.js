@@ -8,20 +8,16 @@ export default function MainGlobalState() {
   let [error, setError] = useState(false);
 
   useEffect(() => {
-    let request = fetch("https://api.github.com/users");
-    request
+    fetch("https://api.github.com/users")
       .then((response) => (response.ok ? response.json() : Promise.reject()))
       .then((response) => {
         setIsLoaded(true);
         setUserList(response);
       })
-      .catch((error) => {
+      .catch(() => {
         setIsLoaded(true);
         setError(true);
       });
-    return () => {
-      
-    };
   }, []);
 
   if (error) {
