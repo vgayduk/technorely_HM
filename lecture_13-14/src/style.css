@@ -1,0 +1,147 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+a {
+  text-decoration: none;
+}
+
+.download {
+  display: block;
+  background: rgb(41, 145, 16);
+  color: #fff;
+  width: fit-content;
+  padding: 20px;
+  margin: 20px;
+  font-size: 20px;
+  border-radius: 20px;
+  border: 3px solid #fff;
+  box-shadow: 0 0 20px 5px #ccc;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.download:hover {
+  transform: scale(0.95);
+  box-shadow: none;
+}
+
+.img-preview {
+  width: 400px;
+  height: 400px;
+  margin: 10px;
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
+  background-position-x: center !important;
+  border-radius: 20px;
+  border: 3px solid #fff;
+  box-shadow: 0 0 20px 5px #ccc;
+  transition: all 0.3s;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.img-preview:hover {
+  transform: scale(0.95);
+  box-shadow: none;
+}
+
+#wrapper {
+  margin: 30px 0;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  width: 100vw;
+}
+
+.img-preview.selected::before {
+  content: "";
+  background: rgba(41, 145, 16, 0.5);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100px;
+}
+
+.img-preview.selected::after {
+  content: "\2713";
+  width: 50px;
+  height: 50px;
+  background: transparent;
+  border: 10px solid #fff;
+  position: absolute;
+  bottom: 10px;
+  border-radius: 50%;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #fff;
+  font-size: 50px;
+  text-align: center;
+  line-height: 50px;
+}
+
+.popup {
+  background: rgba(25, 25, 25, 0.9);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transition: all 0.3s ease;
+  opacity: 0;
+  z-index: -10;
+}
+
+.popup > div:not(.close) {
+  width: 400px;
+  min-height: 200px;
+  background: white;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 20px;
+  color: black;
+  position: relative;
+}
+
+.popup p {
+  text-transform: uppercase;
+  font-size: 20px;
+  text-align: center;
+  line-height: 200px;
+  color: #191919;
+}
+
+.close {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  background: white;
+  color: #d9141c;
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 2px 2px #ccc;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.2s ease;
+}
+
+.close:hover {
+  transform: scale(0.9);
+  box-shadow: none;
+}
